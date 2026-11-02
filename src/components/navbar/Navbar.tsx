@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { MusicPlayer } from "./MusicPlayer";
+import { NavLogo } from "@/components/layout/NavLogo";
 import {
   Menu,
   X,
-  Rocket,
   FolderGit2,
   GraduationCap,
   Wrench,
@@ -13,7 +13,6 @@ import {
   Mail,
   User,
   Home as HomeIcon,
-  Sparkles,
 } from "lucide-react";
 
 interface NavItem {
@@ -36,7 +35,6 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [eggFired, setEggFired] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,11 +62,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const triggerEasterEgg = () => {
-    setEggFired(true);
-    setTimeout(() => setEggFired(false), 2400);
-  };
-
   return (
     <>
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 pointer-events-none">
@@ -92,27 +85,8 @@ export function Navbar() {
             `,
           }}
         >
-          {/* Logo & Easter Egg Trigger */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={triggerEasterEgg}
-              aria-label="Aman Sharma Portfolio"
-              title="Click for warp launch easter egg"
-              className="relative flex items-center gap-2.5 group outline-none"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-xs shadow-[0_0_15px_rgba(99,102,241,0.5)] group-hover:scale-105 transition-transform">
-                AS
-              </div>
-              <span className="font-syne font-bold text-sm tracking-tight text-white hidden sm:inline group-hover:text-blue-300 transition-colors">
-                Aman Sharma
-              </span>
-              <Rocket
-                className={`w-3.5 h-3.5 text-blue-400 transition-transform duration-500 ${
-                  eggFired ? "-translate-y-3 translate-x-3 rotate-45" : "group-hover:rotate-12"
-                }`}
-              />
-            </button>
-          </div>
+          {/* Stylized 'A' Logo with Egg Flip & Launch Tooltip */}
+          <NavLogo />
 
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full px-2 py-1 shadow-inner">
@@ -180,14 +154,6 @@ export function Navbar() {
               </a>
             ))}
           </div>
-        </div>
-      )}
-
-      {/* Easter Egg Overlay notification */}
-      {eggFired && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-blue-600/90 text-white text-xs font-mono backdrop-blur-md border border-blue-400/50 shadow-[0_0_30px_rgba(59,130,246,0.6)] animate-bounce flex items-center gap-2">
-          <Sparkles className="w-4 h-4" />
-          <span>Warp Drive Engaged! 🚀 Welcome to Aman&apos;s Portfolio</span>
         </div>
       )}
     </>
