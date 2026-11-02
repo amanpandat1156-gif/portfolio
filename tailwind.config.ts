@@ -19,6 +19,7 @@ const config: Config = {
         },
       },
       fontFamily: {
+        inter: ["var(--font-inter)", "sans-serif"],
         syne: ["var(--font-syne)", "sans-serif"],
         sans: ["var(--font-instrument)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],

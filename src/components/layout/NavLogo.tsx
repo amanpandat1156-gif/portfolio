@@ -89,7 +89,7 @@ export function NavLogo() {
   const [isEgg, setIsEgg] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -99,29 +99,42 @@ export function NavLogo() {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const triggerEgg = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  const handleMouseEnter = () => {
+    if (touchTimerRef.current) clearTimeout(touchTimerRef.current);
+    setIsEgg(true);
+    setShowTooltip(true);
+  };
 
-    if (isEgg) {
-      // Revert back on second click
+  const handleMouseLeave = () => {
+    if (touchTimerRef.current) clearTimeout(touchTimerRef.current);
+    setIsEgg(false);
+    setShowTooltip(false);
+  };
+
+  const handleTouchStart = () => {
+    if (touchTimerRef.current) clearTimeout(touchTimerRef.current);
+    setIsEgg(true);
+    setShowTooltip(true);
+  };
+
+  const handleTouchEnd = () => {
+    touchTimerRef.current = setTimeout(() => {
       setIsEgg(false);
       setShowTooltip(false);
-    } else {
-      setIsEgg(true);
-      setShowTooltip(true);
+    }, 1200);
+  };
 
-      // Tooltip stays visible for a clear launch window, then smoothly auto-resets if untouched
-      timeoutRef.current = setTimeout(() => {
-        setShowTooltip(false);
-        setIsEgg(false);
-      }, 3500);
+  const handleClick = () => {
+    const homeEl = document.getElementById("home");
+    if (homeEl) {
+      homeEl.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      triggerEgg();
+      handleClick();
     }
   };
 
@@ -129,7 +142,13 @@ export function NavLogo() {
     <div className="relative inline-flex items-center">
       <button
         type="button"
-        onClick={triggerEgg}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onFocus={handleMouseEnter}
+        onBlur={handleMouseLeave}
         onKeyDown={handleKeyDown}
         aria-label="Aman Sharma home"
         title="Prepare for Launch"
@@ -149,7 +168,7 @@ export function NavLogo() {
             transformStyle: "preserve-3d",
             transition: prefersReducedMotion
               ? "none"
-              : "transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              : "transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)",
             transform: isEgg ? "rotateY(180deg)" : "rotateY(0deg)",
           }}
         >
@@ -160,7 +179,7 @@ export function NavLogo() {
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               opacity: isEgg ? 0 : 1,
-              transition: prefersReducedMotion ? "none" : "opacity 0.25s ease-out",
+              transition: prefersReducedMotion ? "none" : "opacity 0.22s ease-out",
             }}
           >
             <LogoGlyphA />
@@ -174,7 +193,7 @@ export function NavLogo() {
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
               opacity: isEgg ? 1 : 0,
-              transition: prefersReducedMotion ? "none" : "opacity 0.25s ease-out",
+              transition: prefersReducedMotion ? "none" : "opacity 0.22s ease-out",
             }}
           >
             <EggGlyph />

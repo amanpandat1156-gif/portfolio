@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Syne, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Syne, Instrument_Sans, JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 const syne = Syne({
   subsets: ["latin"],
@@ -55,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${instrument.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${syne.variable} ${instrument.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-black text-white antialiased min-h-screen selection:bg-blue-500/30 selection:text-white">
         {children}
