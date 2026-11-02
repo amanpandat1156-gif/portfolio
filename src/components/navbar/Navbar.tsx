@@ -7,9 +7,7 @@ import {
   Menu,
   X,
   FolderGit2,
-  GraduationCap,
   Wrench,
-  Trophy,
   Mail,
   User,
   Home as HomeIcon,
@@ -24,10 +22,8 @@ interface NavItem {
 const PRIMARY_LINKS: NavItem[] = [
   { name: "Home", href: "#home", icon: <HomeIcon className="w-4 h-4" /> },
   { name: "About", href: "#about", icon: <User className="w-4 h-4" /> },
-  { name: "Education", href: "#education", icon: <GraduationCap className="w-4 h-4" /> },
   { name: "Projects", href: "#projects", icon: <FolderGit2 className="w-4 h-4" /> },
   { name: "Skills", href: "#skills", icon: <Wrench className="w-4 h-4" /> },
-  { name: "Hackathons", href: "#hackathons", icon: <Trophy className="w-4 h-4" /> },
   { name: "Contact", href: "#contact", icon: <Mail className="w-4 h-4" /> },
 ];
 
