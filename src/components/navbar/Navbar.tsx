@@ -3,28 +3,19 @@
 import React, { useState, useEffect } from "react";
 import { MusicPlayer } from "./MusicPlayer";
 import { NavLogo } from "@/components/layout/NavLogo";
-import {
-  Menu,
-  X,
-  FolderGit2,
-  Wrench,
-  Mail,
-  User,
-  Home as HomeIcon,
-} from "lucide-react";
+import { MobileMenu } from "@/components/layout/MobileMenu";
 
 interface NavItem {
   name: string;
   href: string;
-  icon: React.ReactNode;
 }
 
 const PRIMARY_LINKS: NavItem[] = [
-  { name: "Home", href: "#home", icon: <HomeIcon className="w-4 h-4" /> },
-  { name: "About", href: "#about", icon: <User className="w-4 h-4" /> },
-  { name: "Projects", href: "#projects", icon: <FolderGit2 className="w-4 h-4" /> },
-  { name: "Skills", href: "#skills", icon: <Wrench className="w-4 h-4" /> },
-  { name: "Contact", href: "#contact", icon: <Mail className="w-4 h-4" /> },
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export function Navbar() {
@@ -58,12 +49,34 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Auto-close mobile menu when resizing to desktop viewport
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
+      {/* Background dimming backdrop on mobile when menu is expanded */}
+      {mobileMenuOpen && (
+        <div
+          aria-hidden="true"
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-[2px] md:hidden animate-fade-in"
+        />
+      )}
+
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 pointer-events-none">
         <nav
-          className={`pointer-events-auto mx-auto flex items-center justify-between px-3 md:px-5 py-2.5 transition-all duration-300 ${
-            mobileMenuOpen ? "rounded-2xl" : "rounded-full"
+          className={`pointer-events-auto mx-auto relative transition-all duration-300 overflow-hidden ${
+            mobileMenuOpen
+              ? "rounded-[22px] max-w-md md:max-w-5xl md:rounded-full"
+              : "rounded-full max-w-5xl"
           }`}
           style={{
             minHeight: "56px",
@@ -81,77 +94,85 @@ export function Navbar() {
             `,
           }}
         >
-          {/* Stylized 'A' Logo with Egg Flip & Launch Tooltip */}
-          <NavLogo />
+          {/* Subtle top specular glass reflection */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-0 left-[6%] right-[6%] h-[1px] rounded-full z-10"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 8%, rgba(255,255,255,0.38) 28%, rgba(255,255,255,0.38) 72%, rgba(255,255,255,0.08) 92%, transparent 100%)",
+            }}
+          />
 
-          {/* Desktop Nav Items */}
-          <div className="hidden md:flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full px-2 py-1 shadow-inner">
-            {PRIMARY_LINKS.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                    isActive
-                      ? "bg-white text-black font-semibold shadow-[0_2px_12px_rgba(255,255,255,0.45)] scale-[1.02]"
-                      : "text-white/65 hover:text-white hover:bg-white/[0.08]"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
-          </div>
+          {/* Top Row: Logo, Desktop Links, Audio Badge & Close/Burger Button */}
+          <div className="flex items-center justify-between px-3 md:px-5 py-2.5 min-h-[56px] relative z-20">
+            {/* Stylized 'A' Logo with Flip & Tooltip */}
+            <NavLogo />
 
-          {/* Right Tools (Ambient Music Player + Mobile Hamburger) */}
-          <div className="flex items-center gap-2">
-            <MusicPlayer />
+            {/* Desktop Nav Items */}
+            <div className="hidden md:flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full px-2 py-1 shadow-inner">
+              {PRIMARY_LINKS.map((link) => {
+                const isActive = activeSection === link.href.substring(1);
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                      isActive
+                        ? "bg-white text-black font-semibold shadow-[0_2px_12px_rgba(255,255,255,0.45)] scale-[1.02]"
+                        : "text-white/65 hover:text-white hover:bg-white/[0.08]"
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
+            </div>
 
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              className="md:hidden p-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white/85"
-            >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </button>
-          </div>
-        </nav>
-      </header>
+            {/* Right Tools: Ambient Music Player + Mobile Rounded-Square Toggle Button */}
+            <div className="flex items-center gap-2">
+              <MusicPlayer />
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-40 bg-black/85 backdrop-blur-2xl flex flex-col justify-center px-6 md:hidden animate-fade-in"
-        >
-          <div className="flex flex-col gap-2.5 max-w-sm mx-auto w-full">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10 px-2">
-              <span className="font-syne text-sm font-bold text-white">Navigation</span>
               <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 rounded-full bg-white/5 text-white/60 hover:text-white"
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav-panel"
+                className="md:hidden w-9 h-9 rounded-[10px] flex items-center justify-center bg-white/[0.07] hover:bg-white/[0.12] active:bg-white/[0.15] border border-white/[0.11] text-white/70 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 select-none"
               >
-                <X className="w-4 h-4" />
+                {mobileMenuOpen ? (
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M3 3l10 10M13 3L3 13"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                ) : (
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+                    <path
+                      d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                )}
               </button>
             </div>
-            {PRIMARY_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-white/80 hover:text-white hover:bg-white/[0.1] transition-all text-sm font-medium"
-              >
-                <span className="p-2 rounded-lg bg-white/5 text-blue-400">
-                  {link.icon}
-                </span>
-                <span>{link.name}</span>
-              </a>
-            ))}
           </div>
-        </div>
-      )}
+
+          {/* Integrated Single-Panel Mobile Menu Drawer */}
+          <MobileMenu
+            id="mobile-nav-panel"
+            isOpen={mobileMenuOpen}
+            onClose={() => setMobileMenuOpen(false)}
+            activeSection={activeSection}
+          />
+        </nav>
+      </header>
     </>
   );
 }

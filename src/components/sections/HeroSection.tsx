@@ -53,14 +53,14 @@ export function HeroSection() {
           {personalData.greeting}
         </p>
 
-        {/* Name with Inter Font, Exact Reference Sizing, Drop Shadow & Hover Animation */}
+        {/* Name with Syne font matching About section */}
         <div className="animate-fade-in-up motion-reduce:animate-none relative group">
-          <h1 className="font-inter text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal">
+          <h1 className="font-syne text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight">
             <span className="relative inline-block">
-              <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.4)] group-hover:drop-shadow-[0_0_40px_rgba(255,255,255,0.6)] transition-all duration-500 inline-block group-hover:tracking-wider">
+              <span className="text-white drop-shadow-[0_0_35px_rgba(255,255,255,0.45)] group-hover:drop-shadow-[0_0_55px_rgba(255,255,255,0.7)] transition-all duration-500 inline-block group-hover:tracking-wider">
                 {personalData.name}
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+              <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/70 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
             </span>
           </h1>
         </div>
