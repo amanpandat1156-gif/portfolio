@@ -48,3 +48,12 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Suppress Next.js dev activity indicators & dev tools portals */
+[data-nextjs-toast],
+[data-nextjs-dev-tools-button],
+#nextjs-dev-tools,
+nextjs-portal,
+div[data-next-badge] {
+  display: none !important;
+}

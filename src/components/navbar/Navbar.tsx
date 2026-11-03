@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { MusicPlayer } from "./MusicPlayer";
 import { NavLogo } from "@/components/layout/NavLogo";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 
@@ -104,10 +103,12 @@ export function Navbar() {
             }}
           />
 
-          {/* Top Row: Logo, Desktop Links, Audio Badge & Close/Burger Button */}
+          {/* Top Row: Logo, Desktop Links & Mobile Burger Button */}
           <div className="flex items-center justify-between px-3 md:px-5 py-2.5 min-h-[56px] relative z-20">
             {/* Stylized 'A' Logo with Flip & Tooltip */}
-            <NavLogo />
+            <div className="flex items-center">
+              <NavLogo />
+            </div>
 
             {/* Desktop Nav Items */}
             <div className="hidden md:flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full px-2 py-1 shadow-inner">
@@ -129,10 +130,8 @@ export function Navbar() {
               })}
             </div>
 
-            {/* Right Tools: Ambient Music Player + Mobile Rounded-Square Toggle Button */}
-            <div className="flex items-center gap-2">
-              <MusicPlayer />
-
+            {/* Right: Mobile Burger Toggle (balanced placeholder for desktop) */}
+            <div className="flex items-center justify-end md:w-11">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

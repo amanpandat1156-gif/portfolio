@@ -87,7 +87,6 @@ function EggGlyph({ className = "" }: { className?: string }) {
 
 export function NavLogo() {
   const [isEgg, setIsEgg] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -102,25 +101,21 @@ export function NavLogo() {
   const handleMouseEnter = () => {
     if (touchTimerRef.current) clearTimeout(touchTimerRef.current);
     setIsEgg(true);
-    setShowTooltip(true);
   };
 
   const handleMouseLeave = () => {
     if (touchTimerRef.current) clearTimeout(touchTimerRef.current);
     setIsEgg(false);
-    setShowTooltip(false);
   };
 
   const handleTouchStart = () => {
     if (touchTimerRef.current) clearTimeout(touchTimerRef.current);
     setIsEgg(true);
-    setShowTooltip(true);
   };
 
   const handleTouchEnd = () => {
     touchTimerRef.current = setTimeout(() => {
       setIsEgg(false);
-      setShowTooltip(false);
     }, 1200);
   };
 
@@ -151,7 +146,6 @@ export function NavLogo() {
         onBlur={handleMouseLeave}
         onKeyDown={handleKeyDown}
         aria-label="Aman Sharma home"
-        title="Prepare for Launch"
         className="relative flex items-center justify-center p-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 cursor-pointer select-none group"
         style={{ perspective: "1000px" }}
       >
@@ -200,16 +194,6 @@ export function NavLogo() {
           </div>
         </div>
       </button>
-
-      {/* "Prepare for Launch" Tooltip Box */}
-      {showTooltip && (
-        <div
-          role="tooltip"
-          className="absolute top-[calc(100%+10px)] left-0 sm:left-1/2 sm:-translate-x-1/2 px-2.5 py-1 bg-black border border-white text-white text-[11px] font-mono tracking-wider uppercase whitespace-nowrap rounded-none shadow-[0_4px_20px_rgba(0,0,0,0.95)] z-50 pointer-events-none select-none animate-fade-in"
-        >
-          Prepare for Launch
-        </div>
-      )}
     </div>
   );
 }

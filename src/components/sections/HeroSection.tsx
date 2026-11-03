@@ -5,12 +5,15 @@ import StarfieldCanvas from "../canvas/StarfieldCanvas";
 import { personalData } from "@/data/personal";
 import { socialsData } from "@/data/socials";
 import { Github, Linkedin, Mail, Calendar, ArrowDown } from "lucide-react";
+import { SiX } from "react-icons/si";
 
 export function HeroSection() {
   const getIcon = (name: string) => {
     switch (name) {
       case "github":
         return <Github className="w-4 h-4" />;
+      case "x":
+        return <SiX className="w-3.5 h-3.5" />;
       case "linkedin":
         return <Linkedin className="w-4 h-4" />;
       case "mail":
@@ -65,21 +68,17 @@ export function HeroSection() {
           </h1>
         </div>
 
-        {/* Role Typewriter Badge */}
-        <div className="flex items-center justify-center animate-fade-in-up">
-          <div className="px-5 py-2 bg-black/90 border border-white/20 shadow-2xl backdrop-blur-md">
-            <h2 className="text-sm md:text-base font-mono text-white/90">
-              <span className="inline-block border-r-2 border-white pr-2 animate-blink">
-                {personalData.role}
-              </span>
-            </h2>
-          </div>
-        </div>
 
         {/* Intro Subtitle */}
         <p className="font-sans text-sm md:text-base text-white/60 max-w-xl mx-auto leading-relaxed pt-1">
-          B.Tech CSE student building production-ready web backends, responsive modern interfaces, and applied AI tools.
+          Learning, coding, and building practical things for the web.
         </p>
+
+        {/* Hero CTA Actions */}
+        <div className="flex items-center justify-center gap-3 mt-2 animate-fade-in-up">
+         
+         
+        </div>
 
         {/* Social Pill Dock */}
         <div className="flex items-center justify-center gap-4 px-6 py-3 rounded-full bg-[#141414]/80 backdrop-blur-xl border border-white/10 shadow-xl mt-3 animate-fade-in-up">

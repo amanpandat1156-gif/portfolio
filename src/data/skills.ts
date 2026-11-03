@@ -1,7 +1,16 @@
+export type ReactIconKey =
+  | "nextjs"
+  | "express"
+  | "github"
+  | "vercel"
+  | "gsap"
+  | "antigravity";
+
 export interface SkillItem {
   name: string;
   mono?: string;
   icon?: string;
+  reactIcon?: ReactIconKey;
 }
 
 export interface SkillCategory {
@@ -14,15 +23,17 @@ const DI = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
 export const skillsData: SkillCategory[] = [
   {
-    category: "Frontend Development",
+    category: "Web Frameworks",
     label: "INTERFACE & CLIENT-SIDE",
     list: [
+      { name: "HTML5", icon: `${DI}/html5/html5-original.svg` },
+      { name: "CSS3", icon: `${DI}/css3/css3-original.svg` },
       { name: "JavaScript", icon: `${DI}/javascript/javascript-original.svg` },
       { name: "TypeScript", icon: `${DI}/typescript/typescript-original.svg` },
       { name: "React", icon: `${DI}/react/react-original.svg` },
-      { name: "Next.js", icon: `${DI}/nextjs/nextjs-original.svg` },
+      { name: "Next.js", reactIcon: "nextjs" },
       { name: "Tailwind CSS", icon: `${DI}/tailwindcss/tailwindcss-original.svg` },
-      { name: "GSAP", mono: "GS" },
+      { name: "GSAP", reactIcon: "gsap", mono: "GS" },
     ],
   },
   {
@@ -30,24 +41,25 @@ export const skillsData: SkillCategory[] = [
     label: "SERVERS & DATABASES",
     list: [
       { name: "Node.js", icon: `${DI}/nodejs/nodejs-original.svg` },
-      { name: "Express.js", icon: `${DI}/express/express-original.svg` },
+      { name: "Express.js", reactIcon: "express" },
       { name: "MongoDB", icon: `${DI}/mongodb/mongodb-original.svg` },
-      { name: "Mongoose", mono: "MG" },
+      { name: "Mongoose", icon: `${DI}/mongoose/mongoose-original.svg`, mono: "MG" },
       { name: "Python", icon: `${DI}/python/python-original.svg` },
       { name: "Java", icon: `${DI}/java/java-original.svg` },
-      { name: "REST APIs", mono: "API" },
+     // { name: "REST APIs", mono: "API" },
     ],
   },
   {
-    category: "DevOps & Tooling",
+    category: "Dev Tools",
     label: "ENVIRONMENT & PLATFORMS",
     list: [
       { name: "Git", icon: `${DI}/git/git-original.svg` },
-      { name: "GitHub", icon: `${DI}/github/github-original.svg` },
+      { name: "GitHub", reactIcon: "github" },
       { name: "VS Code", icon: `${DI}/vscode/vscode-original.svg` },
       { name: "Postman", icon: `${DI}/postman/postman-original.svg` },
-      { name: "Vercel", icon: `${DI}/vercel/vercel-original.svg` },
-      { name: "Chrome Extensions", mono: "CRX" },
+      { name: "Vercel", reactIcon: "vercel" },
+      { name: "Firebase", icon: `${DI}/firebase/firebase-original.svg` },
+      { name: "Antigravity", reactIcon: "antigravity" },
     ],
   },
 ];
