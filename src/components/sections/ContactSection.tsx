@@ -186,16 +186,7 @@ export function ContactSection() {
               </p>
             )}
 
-            <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-white/40">
-              <span>Direct inquiries:</span>
-              <a
-                href="mailto:amanpandat1156@gmail.com"
-                className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                amanpandat1156@gmail.com
-              </a>
-            </div>
+           
           </form>
         </div>
       </div>
