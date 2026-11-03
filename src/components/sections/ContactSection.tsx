@@ -16,7 +16,9 @@ export function ContactSection() {
     setStatus("submitting");
     setErrorMessage("");
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ||
+      "e8ce9d01-9be7-432c-9861-4b5efc0d45ec";
 
     // If access key is missing, notify visitor and offer direct email
     if (!accessKey) {
