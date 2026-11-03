@@ -14,7 +14,7 @@ export const socialsData: SocialLink[] = [
   },
   {
     label: "X",
-    href: "https://x.com/amanpandat1156",
+    href: "https://x.com/PandatAman1156",
     color: "#ffffff",
     iconName: "x",
   },

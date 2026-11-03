@@ -37,9 +37,21 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aman Sharma | Full Stack Developer Portfolio",
+  title: "Aman Sharma | Portfolio",
   description:
-    "Portfolio of Aman Sharma, a Full Stack Developer specializing in Next.js, Node.js, Express, MongoDB, REST APIs, and applied AI.",
+    "Portfolio of Aman Sharma, Full Stack Developer and B.Tech CSE student at BSA College of Engineering and Technology, Mathura.",
+  openGraph: {
+    title: "Aman Sharma | Portfolio",
+    description:
+      "Portfolio of Aman Sharma, Full Stack Developer and B.Tech CSE student at BSA College of Engineering and Technology, Mathura.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aman Sharma | Portfolio",
+    description:
+      "Portfolio of Aman Sharma, Full Stack Developer and B.Tech CSE student at BSA College of Engineering and Technology, Mathura.",
+  },
   keywords: [
     "Aman Sharma",
     "Full Stack Developer",
@@ -49,7 +61,6 @@ export const metadata: Metadata = {
     "Node.js",
     "Express.js",
     "MongoDB",
-    "Dark Horses",
   ],
   authors: [{ name: "Aman Sharma" }],
 };
