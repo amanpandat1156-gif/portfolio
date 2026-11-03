@@ -21,7 +21,7 @@ Rather than relying on generic website templates, this portfolio is custom-engin
 1. **Ultra-Fast Turbopack Performance:** Built with Next.js 16.4.4 App Router; pre-rendered statically (SSG) for sub-second delivery via global edge CDN.
 2. **Sci-Fi HUD & Liquid Glassmorphism:** Futuristic UI with custom SVG corner brackets, glow borders, interactive dock navigation, and 3D logo flips.
 3. **Deep Space Particle Simulation:** Custom HTML5 Canvas 2D starfield rendering responsive multi-layer star coordinates with subtle mouse parallax.
-4. **Zero-Server Contact Gateway:** AJAX FormSubmit pipeline direct to `amanpandat1156@gmail.com` with automatic prefilled `mailto:` fallback.
+4. **Zero-Server Contact Gateway:** Web3Forms API pipeline direct to `amanpandat1156@gmail.com` with anti-spam honeypot and clean transmission state handling.
 
 ### Featured Projects in Portfolio
 - **VidTube (Backend Architecture):** Production-ready video sharing backend with JWT refresh tokens, Multer file handling, Cloudinary media CDN, and complex MongoDB aggregation pipelines for watch history and subscriptions.
@@ -42,7 +42,7 @@ Rather than relying on generic website templates, this portfolio is custom-engin
 | **Iconography** | Lucide & React Icons | `0.475 / 5.7` | Lightweight SVG icons for UI controls, brand logos (GitHub, X, LinkedIn, LeetCode). |
 | **Particle FX** | HTML5 2D Canvas | Native Web API | Optimized 60 FPS `requestAnimationFrame` rendering for interactive starfield canvas. |
 | **Ambient Audio** | HTML5 Web Audio | Native Web API | Navbar lo-fi audio player with play/pause state and animated audio visualizer bars. |
-| **Contact API** | FormSubmit AJAX API | REST API | Async client-side form submission to `amanpandat1156@gmail.com` with mailto fallback. |
+| **Contact API** | Web3Forms Gateway API | REST API | Async client-side form submission to `amanpandat1156@gmail.com` with anti-spam and direct email link fallback. |
 | **Deployment & CI** | Git, GitHub & Vercel | Cloud CI/CD | Continuous deployment on `git push origin master`, edge network caching, HTTPS. |
 
 ---
