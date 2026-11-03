@@ -40,3 +40,6 @@ next-env.d.ts
 # Antigravity agent prompts & memory (private, ignored from git)
 .antigravity
 .antigravity*
+
+# local documents / binaries
+*.pdf
